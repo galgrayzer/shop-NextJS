@@ -1,11 +1,12 @@
 interface FlashMessageProps {
     message: string;
     type: string;
+    className?: string;
 }
 
-const FlashMessage: React.FC<FlashMessageProps> = ({ message, type }) => {
+const FlashMessage: React.FC<FlashMessageProps> = ({ message, type, className }) => {
     return (
-        <div className="text-center">
+        <div className={`text-center ${className}`}>
             {
                 type === "error" ?
                 (

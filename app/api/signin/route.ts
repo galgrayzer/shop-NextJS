@@ -1,13 +1,9 @@
-import {randomBytes} from "crypto";
+import { randomBytes } from "crypto";
 import { cookies } from "next/headers";
 
 import PBUserRecord from "@/models/PB/PBUserRecord";
 import PBSessionRecord from "@/models/PB/PBSessionRecord";
-
-interface AccountDitails {
-    username: string;
-    password: string;
-}
+import AccountDitails from "@/models/json/AccountDitails";
 
 const checkAccount = async (username: string, password: string) => {
     const res = await fetch(process.env.DB_URL + `/collections/users/records?filter=(username='${username}')`)
