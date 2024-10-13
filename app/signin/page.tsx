@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import InputField from '../(componnents)/InputField';
+import FlashMessage from '../(componnents)/FlashMessage';
 
 const SigninPage = () => {
     const router = useRouter();
     const [username, setUsername] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [flashMessage, setFlashMessage] = useState<string>("");
 
     const handleSubmit = async () => {
         const response = await fetch("/api/signin", {
@@ -23,11 +25,15 @@ const SigninPage = () => {
         const data = await response.json();
         if (data.status === 300) {
             router.push(data.redirect);
+        } else if (data.status === 401) {
+            console.log(data.message);
+            setFlashMessage(data.message);
         }
     };
 
     return (
         <div className='center-top'>
+          {flashMessage && <FlashMessage message={flashMessage} type='error' />}
           <h1 className='text-5xl font-bold'>SignIn Page</h1>
             <InputField
               className="mt-10"
