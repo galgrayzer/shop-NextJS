@@ -25,7 +25,7 @@ const SigninPage = () => {
         const data = await response.json();
         if (data.status === 300) {
             router.push(data.redirect);
-        } else if (data.status === 401) {
+        } else {
             console.log(data.message);
             setFlashMessage(data.message);
         }

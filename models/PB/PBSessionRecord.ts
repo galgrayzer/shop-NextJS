@@ -1,4 +1,4 @@
-interface PBRecord {
+interface PBSessionRecord {
     page: number;
     perPage: number;
     totalItems: number;
@@ -10,11 +10,12 @@ interface PBRecordItem {
     collectionId: string;
     collectionName: string;
     created: string;
+    expires: string;
+    fields: object;
     id: string;
-    password: string;
-    scope: string;
+    token: string;
     updated: string;
     username: string;
 }
 
-export default PBRecord;
+export default PBSessionRecord;
