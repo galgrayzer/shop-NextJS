@@ -1,21 +1,10 @@
 import { randomBytes } from "crypto";
 import { cookies } from "next/headers";
 
-import PBUserRecord from "@/models/PB/PBUserRecord";
 import PBSessionRecord from "@/models/PB/PBSessionRecord";
 import AccountDitails from "@/models/json/AccountDitails";
+import { checkAccount } from "@/utils/account";
 
-const checkAccount = async (username: string, password: string) => {
-    const res = await fetch(process.env.DB_URL + `/collections/users/records?filter=(username='${username}')`)
-    const record: PBUserRecord = await res.json();
-    if (record.items.length !== 1) {
-        return [false, "Username not found"];
-    }
-    if (record.items[0].password !== password) {
-        return [false, "Password is incorrect"];
-    }
-    return [true, ""];
-}
 
 const saveSession = async (token: string, username: string) => {
     let res = await fetch(process.env.DB_URL + `/collections/sessions/records?filter=(username='${username}')`);

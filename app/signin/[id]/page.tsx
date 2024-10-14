@@ -1,4 +1,4 @@
-import SigninPage from "./(componnent)/SigninPage";
+import SigninPage from "../(componnent)/SigninPage";
 
 const dynamicPage = ({ params }: { params: { id: string }}) => {
     return (
